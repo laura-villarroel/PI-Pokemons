@@ -1,36 +1,9 @@
 
 const axios = require("axios");
-const e = require("cors");
+//const cors = require("cors");
 const { Pokemon, Type } = require("../db");
+const { Op } = require("sequelize");
 
-//? primera forma
-/* let getPokemons = async function() {
-    let api1 = (await (axios.get(`https://pokeapi.co/api/v2/pokemon`))).data;
-    let apiData1 =await Promise.all( api1.results.map(async (d) => {
-      return  {
-        name: d.name,
-        id:(await (axios.get(d.url))).data.id,
-        img:(await (axios.get(d.url))).data.sprites.other.home.front_default,
-        type:(await (axios.get(d.url))).data.types.map(e=>{return e.type.name})
-        
-      };
-    }));
-    let api2 = (await (axios.get(api1.next))).data;
-
-    let apiData2 =await Promise.all( api2.results.map(async (d) => {
-      return  {
-        name: d.name,
-        id:(await (axios.get(d.url))).data.id,
-        img:(await (axios.get(d.url))).data.sprites.other.home.front_default,
-        type:(await (axios.get(d.url))).data.types.map(e=>{return e.type.name})
-        
-      };
-    }));
-
-    return  [...apiData1,...apiData2];
-  } */
-
-//? Segunda forma
 
 let getPokemons40 = async function() {
 
@@ -42,7 +15,9 @@ for (let i = 1; i < 41; i++) {
     id: api.id,
     img:api.sprites.other.home.front_default,
     attack:api.stats[1].base_stat,
-    type:api.types.map(e=>{return e.type.name})
+    //type:api.types.map(e=>{return e.type.name})
+    typePrimary: api.types[0].type.name,
+    typeSecondary: api.types[1]?.type.name,
    
   }
   
@@ -54,16 +29,17 @@ return [...apiData]
 }
 
 
-let getPokemonsDB = async function() {
-  const AllPokemonsDB=await Pokemon.findAll();
+let getPokemonsDB = async function() { 
+  const AllPokemonsDB=await Pokemon.findAll({ include: Type }); //!  revisar se rompe por el type
   const PokemonsDB=AllPokemonsDB.map(elem=>{
 return{
   name: elem.dataValues.name,
   id: elem.dataValues.id,
   img: elem.dataValues.img,
   attack: elem.dataValues.attack,
-  //type:elem.dataValues.type
-
+  typePrimary: elem.dataValues.types[0]?.name,
+  typeSecondary: elem.dataValues.types[1]?.name,
+  
 }
   })
 
@@ -93,7 +69,9 @@ let getPokemonApi=async function(id) {
         img:api.sprites.other.home.front_default,
         height:api.height,
         weight:api.weight,
-        types:api.types.map((e)=>{return e.type.name}),
+        //types:api.types.map((e)=>{return e.type.name}),
+        typePrimary: api.types[0].type.name,
+        typeSecondary: api.types[1]?.type.name,
         hp:api.stats[0].base_stat,
         attack:api.stats[1].base_stat,
         defense:api.stats[2].base_stat,
@@ -130,9 +108,56 @@ let getPokemonByName=async function(name) {
 
 }
 
+let createPokemon=async function(pokemon) {
+  const {
+    name, //! no debe de permitir agregar si el nombre existe en la DB
+    img,
+    height,
+    weight,
+    typePrimary,
+    typeSecondary,
+    hp,
+    attack,
+    defense,
+    specialAttack,
+    specialDefense,
+    speed,
+  } = pokemon; // req.body
+  
+  let character = {
+    name,
+    img,
+    hp,
+    attack,
+    defense,
+    specialAttack,
+    specialDefense,
+    speed,
+    height,
+    weight
+  };
+
+  //let types = [typePrimary, typeSecondary ? typeSecondary : null];
+  
+  const Types = await Type.findAll({
+    attributes: ['id'],
+    where: { name:{[Op.in]: [typePrimary, typeSecondary]} }
+  }); //! se debe de crear un error si uno de los tipos no existe en la base de datos
+
+  const NewPokemon = await Pokemon.create(character);
+  await NewPokemon.addTypes(Types);
+  //await NewPokemon.addTypes([Types[0].id, Types[1].id]);
+
+  //return NewPokemon;
+  return Types;
+}
+
+// const pokemon = await createPokemon(req.body)
+//pokemon.addTypes(types)
 
 module.exports = {
     getAllPokemons,
     getPokemonById,
-    getPokemonByName
+    getPokemonByName,
+    createPokemon
   };

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getAllPokemons, getPokemonById} = require("../controllers/pokemons");
+const { getAllPokemons, getPokemonById,getPokemonByName, createPokemon} = require("../controllers/pokemons");
 const { Op, Pokemon, Type } = require('../db');
 
 
@@ -42,7 +42,10 @@ router.get('/', async (req, res) => {
      if (!name)
        return res.status(404).send('Falta enviar datos obligatorios');
      try {
-       const NewPokemon = await Pokemon.create(req.body);
+      const NewPokemon= await createPokemon(req.body)
+      
+      
+      //const NewPokemon = await Pokemon.create(req.body);
        res.status(201).json(NewPokemon);
      } catch (error) {
        res.status(404).send('Error en alguno de los datos provistos');

@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 const { Type } = require('./src/db.js');
 const { getPokemonTypes} = require("./src/controllers/types");
 
-//! revisar por que aveces sale error
+//* revisar por que aveces sale error //* ok
  let CreateDBTypes = async () =>{
   await Promise.all(
     (await getPokemonTypes()).map(elem=>{
