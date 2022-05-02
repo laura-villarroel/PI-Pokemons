@@ -31,7 +31,7 @@ return [...apiData]
 
 let getPokemonsDB = async function() { 
   const AllPokemonsDB=await Pokemon.findAll({ include: Type }); //!  revisar se rompe por el type
-  const PokemonsDB=AllPokemonsDB.map(elem=>{
+/*   const PokemonsDB=AllPokemonsDB.map(elem=>{
 return{
   name: elem.dataValues.name,
   id: elem.dataValues.id,
@@ -41,9 +41,21 @@ return{
   typeSecondary: elem.dataValues.types[1]?.name,
   
 }
-  })
+  }) */
 
+  const PokemonsDB=AllPokemonsDB.map(elem=>{
+    return{
+      name: elem.name,
+      id: elem.id,
+      img: elem.img,
+      attack: elem.attack,
+      typePrimary: elem.Types[0]?.name,
+      typeSecondary: elem.Types[1]?.name,
+      
+    }
+      })
   return PokemonsDB;
+  //return AllPokemonsDB
 
 }
 
@@ -53,9 +65,8 @@ let getAllPokemons=async function() {
     const getDBPokemons=  await getPokemonsDB()
  
 
- //return getApiPokemons.concat(getDBPokemons)
  return await [...getApiPokemons,...getDBPokemons]
- //return  [...getApiPokemons]
+ //return  [...getDBPokemons]
 
 }
 
@@ -69,7 +80,6 @@ let getPokemonApi=async function(id) {
         img:api.sprites.other.home.front_default,
         height:api.height,
         weight:api.weight,
-        //types:api.types.map((e)=>{return e.type.name}),
         typePrimary: api.types[0].type.name,
         typeSecondary: api.types[1]?.type.name,
         hp:api.stats[0].base_stat,
@@ -92,18 +102,26 @@ let getPokemonById=async function(id) {
    return await getPokemonApi(id);
     else {return await getPokemonByIdDB(id)}
   } catch (error) {
-     throw Error('"Not found!"') //! revisar la creacion del error  
+     throw new Error('Not found!') //! revisar la creacion del error  
   }
   
 }
 
 let getPokemonByName=async function(name) {
   try {
-    return await getPokemonApi(name);
+    const pokemonDB=await Pokemon.findOne({where: {
+      name:name}})
+    if(pokemonDB) {return  pokemonDB}
+
+    const pokemonApi= await getPokemonApi(name); //! aunque no consiga el nombre en la api devuelve algo vacio ver como solucionarlo
+
+    if(pokemonApi) {return pokemonApi}
+
+    
 
   } catch (error) {
-    const pokemon=await Pokemon.findOne(name)
-  return pokemon;}
+    
+    throw new Error('Not found!')}
   
 
 }
@@ -138,7 +156,10 @@ let createPokemon=async function(pokemon) {
   };
 
   //let types = [typePrimary, typeSecondary ? typeSecondary : null];
-  
+  const pokemonDB=await Pokemon.findOne({where: {
+    name:name}})
+    if(pokemonDB) { throw new Error('There is already a pokemon with that name, please choose another name!')}
+
   const Types = await Type.findAll({
     attributes: ['id'],
     where: { name:{[Op.in]: [typePrimary, typeSecondary]} }
@@ -146,14 +167,13 @@ let createPokemon=async function(pokemon) {
 
   const NewPokemon = await Pokemon.create(character);
   await NewPokemon.addTypes(Types);
-  //await NewPokemon.addTypes([Types[0].id, Types[1].id]);
+  
 
   //return NewPokemon;
   return Types;
 }
 
-// const pokemon = await createPokemon(req.body)
-//pokemon.addTypes(types)
+
 
 module.exports = {
     getAllPokemons,

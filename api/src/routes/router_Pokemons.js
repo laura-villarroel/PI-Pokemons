@@ -9,15 +9,20 @@ const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-       
+      const {name} = req.query;
    
+      if (name){
+       let getPokemon= await getPokemonByName(name)
+      return res.status(200).send(getPokemon)
+      }
+
       //let PokemonsApi= await  getPokemons40()
       let PokemonsApi= await  getAllPokemons()
 
       res.status(200).send(PokemonsApi)
    
     } catch (error) {
-        console.log(error)
+      return res.status(400).json({error:error.message})
         
     } 
    
@@ -32,7 +37,7 @@ router.get('/', async (req, res) => {
         res.status(200).send(PokemonApi)
    
        } catch (error) {
-           console.log(error)
+        return res.status(400).json({error:error.message})
        }
    })
    

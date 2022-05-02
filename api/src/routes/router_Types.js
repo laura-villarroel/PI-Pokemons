@@ -9,7 +9,7 @@ const router = Router();
 router.get('/', async (req, res) => {
     try {
 
-        let TypesPokemons= await getPokemonTypes()
+        let TypesPokemons= await Type.findAll()
 
         res.status(200).send(TypesPokemons)
       
