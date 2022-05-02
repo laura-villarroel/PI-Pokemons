@@ -1,6 +1,5 @@
 const { Router } = require('express');
-const { getPokemonTypes} = require("../controllers/types");
-const { Op, Pokemon, Type } = require('../db');
+const {  Type } = require('../db');
 
 
 
@@ -10,14 +9,11 @@ router.get('/', async (req, res) => {
     try {
 
         let TypesPokemons= await Type.findAll()
-
         res.status(200).send(TypesPokemons)
       
     } catch (error) {
-        console.log(error)
+        return res.status(400).json({error})
     }
 })
-
-
 
 module.exports = router;

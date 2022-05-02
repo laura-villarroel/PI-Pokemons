@@ -15,7 +15,6 @@ for (let i = 1; i < 41; i++) {
     id: api.id,
     img:api.sprites.other.home.front_default,
     attack:api.stats[1].base_stat,
-    //type:api.types.map(e=>{return e.type.name})
     typePrimary: api.types[0].type.name,
     typeSecondary: api.types[1]?.type.name,
    
@@ -31,17 +30,6 @@ return [...apiData]
 
 let getPokemonsDB = async function() { 
   const AllPokemonsDB=await Pokemon.findAll({ include: Type }); //!  revisar se rompe por el type
-/*   const PokemonsDB=AllPokemonsDB.map(elem=>{
-return{
-  name: elem.dataValues.name,
-  id: elem.dataValues.id,
-  img: elem.dataValues.img,
-  attack: elem.dataValues.attack,
-  typePrimary: elem.dataValues.types[0]?.name,
-  typeSecondary: elem.dataValues.types[1]?.name,
-  
-}
-  }) */
 
   const PokemonsDB=AllPokemonsDB.map(elem=>{
     return{
@@ -92,8 +80,29 @@ let getPokemonApi=async function(id) {
    return PokemonApi;
 }
 let getPokemonByIdDB=async function(id) {
-  const PokemonById=await Pokemon.findByPk(id)
-  return await PokemonById;
+  const pokemonById=await Pokemon.findByPk(id,  {include: Type }) //! revisar
+  
+  const pokemonsDBId={
+    id:pokemonById.id,
+    name:pokemonById.name,
+    img:pokemonById.img,
+    hp:pokemonById.hp,
+    atrack:pokemonById.atrack,
+    defense:pokemonById.defense,
+    specialAttack:pokemonById.specialAttack,
+    specialDefense:pokemonById.specialDefense,
+    speed:pokemonById.speed,
+    height:pokemonById.height,
+    weight:pokemonById.weight,
+    typePrimary:pokemonById.Types[0]?.name,
+    typeSecondary:pokemonById.Types[1]?.name
+
+    
+  }
+ return pokemonsDBId;
+  
+  
+
 }
 
 let getPokemonById=async function(id) {
@@ -102,18 +111,37 @@ let getPokemonById=async function(id) {
    return await getPokemonApi(id);
     else {return await getPokemonByIdDB(id)}
   } catch (error) {
-     throw new Error('Not found!') //! revisar la creacion del error  
+     throw new Error('Not found!') //* Se la creacion del error  si no lo consigue OK
   }
   
 }
 
 let getPokemonByName=async function(name) {
   try {
-    const pokemonDB=await Pokemon.findOne({where: {
-      name:name}})
-    if(pokemonDB) {return  pokemonDB}
+    const nameLower=name.toLowerCase()
+    const pokemonDB=await Pokemon.findOne({where: { //! si se recibe el nombre en mayuscula o en miniscula debe poder buscar
+      name:nameLower},
+      include: Type})
 
-    const pokemonApi= await getPokemonApi(name); //! aunque no consiga el nombre en la api devuelve algo vacio ver como solucionarlo
+    if(pokemonDB) {
+      const PokemonsDBname={
+        id:pokemonDB.id,
+        name:pokemonDB.name,
+        img:pokemonDB.img,
+        hp:pokemonDB.hp,
+        atrack:pokemonDB.atrack,
+        defense:pokemonDB.defense,
+        specialAttack:pokemonDB.specialAttack,
+        specialDefense:pokemonDB.specialDefense,
+        speed:pokemonDB.speed,
+        height:pokemonDB.height,
+        weight:pokemonDB.weight,
+        typePrimary:pokemonDB.Types[0]?.name,
+        typeSecondary:pokemonDB.Types[1]?.name }
+      
+      return  PokemonsDBname}
+
+    const pokemonApi= await getPokemonApi(nameLower); 
 
     if(pokemonApi) {return pokemonApi}
 
@@ -121,14 +149,14 @@ let getPokemonByName=async function(name) {
 
   } catch (error) {
     
-    throw new Error('Not found!')}
+    throw new Error('Not found!')} //* Se la creacion del error  si no lo consigue OK
   
 
 }
 
 let createPokemon=async function(pokemon) {
   const {
-    name, //! no debe de permitir agregar si el nombre existe en la DB
+    name, //* no debe de permitir agregar si el nombre existe en la DB OK
     img,
     height,
     weight,
@@ -142,8 +170,20 @@ let createPokemon=async function(pokemon) {
     speed,
   } = pokemon; // req.body
   
+  if (!name) {throw new Error('need to send the name of the pokemon!')}
+  
+  const pokemonDB=await Pokemon.findOne({
+    where: {name:name.toLowerCase()}
+  })
+    if(pokemonDB) { throw new Error('There is already a pokemon with that name, please choose another name!')}
+
+  const Types = await Type.findAll({
+    attributes: ['id'],
+    where: { name:{[Op.in]: [typePrimary, typeSecondary]} }
+  }); //! se debe de crear un error si uno de los tipos no existe en la base de datos
+  
   let character = {
-    name,
+    name:name.toLowerCase(), //* convertir el nombre en minuscula OK
     img,
     hp,
     attack,
@@ -154,23 +194,12 @@ let createPokemon=async function(pokemon) {
     height,
     weight
   };
-
-  //let types = [typePrimary, typeSecondary ? typeSecondary : null];
-  const pokemonDB=await Pokemon.findOne({where: {
-    name:name}})
-    if(pokemonDB) { throw new Error('There is already a pokemon with that name, please choose another name!')}
-
-  const Types = await Type.findAll({
-    attributes: ['id'],
-    where: { name:{[Op.in]: [typePrimary, typeSecondary]} }
-  }); //! se debe de crear un error si uno de los tipos no existe en la base de datos
-
   const NewPokemon = await Pokemon.create(character);
   await NewPokemon.addTypes(Types);
   
 
-  //return NewPokemon;
-  return Types;
+  return NewPokemon;
+ 
 }
 
 

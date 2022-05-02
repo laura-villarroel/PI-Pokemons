@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const { getAllPokemons, getPokemonById,getPokemonByName, createPokemon} = require("../controllers/pokemons");
-const { Op, Pokemon, Type } = require('../db');
 
 
 
@@ -13,17 +12,14 @@ router.get('/', async (req, res) => {
    
       if (name){
        let getPokemon= await getPokemonByName(name)
-      return res.status(200).send(getPokemon)
+      return res.status(200).json(getPokemon)  
       }
 
-      //let PokemonsApi= await  getPokemons40()
       let PokemonsApi= await  getAllPokemons()
-
-      res.status(200).send(PokemonsApi)
-   
+      return res.status(200).json(PokemonsApi)
+     
     } catch (error) {
-      return res.status(400).json({error:error.message})
-        
+      return res.status(400).json({error:error.message})    
     } 
    
    })
@@ -31,10 +27,9 @@ router.get('/', async (req, res) => {
    router.get('/:id', async (req, res) => {
        try {
         const id=req.params.id
-        //let PokemonApi= await  getPokemonByIdApi(id)
+
         let PokemonApi= await  getPokemonById(id)
-       
-        res.status(200).send(PokemonApi)
+        res.status(200).json(PokemonApi)
    
        } catch (error) {
         return res.status(400).json({error:error.message})
@@ -42,20 +37,14 @@ router.get('/', async (req, res) => {
    })
    
    router.post('/', async (req, res) => {
-       const {name} = req.body;
-     //console.log(req.body)
-     if (!name)
-       return res.status(404).send('Falta enviar datos obligatorios');
+       
      try {
-      const NewPokemon= await createPokemon(req.body)
-      
-      
-      //const NewPokemon = await Pokemon.create(req.body);
-       res.status(201).json(NewPokemon);
+        await createPokemon(req.body)
+       res.status(201).json({msg:'successfully created pokemon'});
+
      } catch (error) {
-       res.status(404).send('Error en alguno de los datos provistos');
+       res.status(404).json({error:error.message});
      }
    })
-
 
 module.exports = router;
