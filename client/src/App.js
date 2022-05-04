@@ -1,10 +1,10 @@
 import './App.css';
 import React from "react";
 import { Route } from "react-router";
-import Home from './components/Home/Home.js'
-import LandingPage from './components/LandingPage/LandingPage.js'
-import DetailPokemon from './components/DetailPokemon/DetailPokemon.js'
-import CreatePokemon from './components/CreatePokemon/CreatePokemon.js'
+import Home from './components/Home/Home.jsx'
+import LandingPage from './components/LandingPage/LandingPage.jsx'
+import DetailPokemon from './components/DetailPokemon/DetailPokemon.jsx'
+import CreatePokemon from './components/CreatePokemon/CreatePokemon.jsx'
 
 function App() {
   return (

@@ -96,7 +96,7 @@ module.exports = {
      
     
      return await [...getApiPokemons,...getDBPokemons]; 
-     //return await
+     //return 
 
     },
     getPokemonById: async function(id) {

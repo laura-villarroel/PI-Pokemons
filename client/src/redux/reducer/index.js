@@ -56,15 +56,64 @@ const initialState = {
               }
         
         case FILTER_BY_TYPE:
+            const filterPokemonType=action.payload === 'all'
+            ? state.pokemons
+            :state.pokemons.filter(elem=>
+                elem.typePrimary=== action.payload || elem.typeSecondary===action.payload)
+            return {
+                ...state,
+                pokemons:filterPokemonType
+             
+                }
         
         case FILTER_BY_ORIGIN:
-        
+            const filterPokemonOrigin= //! revisar que pasa cuando es all
+            action.payload === 'api'
+            ? state.pokemons.filter(elem=> isNaN(elem.id)===false)
+            :state.pokemons.filter(elem=> isNaN(elem.id)!==false)
+            return {
+                ...state,
+                pokemons: filterPokemonOrigin,
+              };
+    
         case ORDER_BY_NAME:
+            const  orderByName=action.payload ==='A to Z' //ABC
+            ? state.pokemons.sort(function (a, b) { 
+                if (a.name > b.name) {
+                    return 1;
+                  }
+                  if (a.name < b.name) {
+                    return -1;
+                  }
+                  return 0;
+                }
+            )
+            :state.pokemons.sort(function (a, b) { 
+                if (a.name > b.name) {
+                    return -1;
+                  }
+                  if (a.name < b.name) {
+                    return 1;
+                  }   
+                  return 0;
+            })
+            return {
+                ...state,
+                pokemons: orderByName, // se puede intentar retornar solo el estado ya que sort modifica el arreglo
+            }
+
         
         case ORDER_BY_ATTACK:
-
-
+            const  orderByAttack=action.payload ==='menor a mayor' // asc
+            ? state.pokemons.sort((a, b) => a.attack - b.attack)
+            : state.pokemons.sort((a, b) => b.attack - a.attack);
+            return {
+                ...state,
+                pokemons: orderByAttack,
+            }
+            default:
+             return state;
     }
+  };
 
-
-  }
+  export default reducer;
