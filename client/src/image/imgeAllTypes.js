@@ -1,4 +1,4 @@
-const allTypesIMG = {
+const imgeAllTypes = {
     flying: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Pok%C3%A9mon_Flying_Type_Icon.svg/768px-Pok%C3%A9mon_Flying_Type_Icon.svg.png',
     normal: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Pok%C3%A9mon_Normal_Type_Icon.svg/768px-Pok%C3%A9mon_Normal_Type_Icon.svg.png',
     fighting: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Pok%C3%A9mon_Fighting_Type_Icon.svg/768px-Pok%C3%A9mon_Fighting_Type_Icon.svg.png',
@@ -21,4 +21,4 @@ const allTypesIMG = {
     shadow: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Pok%C3%A9mon_Dark_Type_Icon.svg/768px-Pok%C3%A9mon_Dark_Type_Icon.svg.png',
 }
 
-export default allTypesIMG
+export default imgeAllTypes

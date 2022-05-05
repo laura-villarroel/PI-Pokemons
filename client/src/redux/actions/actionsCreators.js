@@ -11,6 +11,7 @@ import {
     FILTER_BY_ORIGIN,
     ORDER_BY_NAME,
     ORDER_BY_ATTACK,
+    SORT_POKEMONS //! esto sustituiria los dos ordenamientos
 } from "./actionType.js";
 
 
@@ -90,6 +91,15 @@ export const filterByOrigin = (payload) => {
         payload
     }
 }
+
+export const sortPokemons = (payload) => { //! esto sustituiria los dos ordenamientos
+    return {
+        type: SORT_POKEMONS,
+        payload
+    }
+}
+
+
 export const orderByName = (payload) => {
     return {
         type: ORDER_BY_NAME,

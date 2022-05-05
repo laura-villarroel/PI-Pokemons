@@ -9,6 +9,8 @@ export const CLEAN_DETAIL_POKEMON = 'CLEAN_DETAIL_POKEMON'
 
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE'
 export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN'
+
+export const SORT_POKEMONS='SORT_POKEMONS' //! esto sustituiria los dos ordenamiento
+
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'
 export const ORDER_BY_ATTACK = 'ORDER_BY_ATTACK'
-
