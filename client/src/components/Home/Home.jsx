@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { useEffect, useState } from "react";
-import {getAllPokemons, getAllTypes, filterByType, filterByOrigin, orderByName, orderByAttack,sortPokemons } from '../../redux/actions/actionsCreators.js' //! corregir
+import {getAllPokemons, getAllTypes, filterByType, filterByOrigin,sortPokemons } from '../../redux/actions/actionsCreators.js' //! corregir
 import { StyledHome } from "./SlyledHome.jsx";
 //---------------------
 import NavBar from "../NavBar/NavBar.jsx";
@@ -41,14 +41,7 @@ export default function Home() {
       setCurrentPAge(1)
     }
   
-    const handleSortBySTR = (e) => {
-      e.preventDefault()
-      dispatch(orderByAttack(e.target.value))
-      setCurrentPAge(1)
-      setOrden(`Ordenado ${e.target.value}`)
-    }
-  
-    //! esto sustituye las funciones de ordenamiento
+   
     const handleSortPokemons = (e) => {
       e.preventDefault()
       dispatch(sortPokemons(e.target.value))
@@ -61,12 +54,7 @@ export default function Home() {
       dispatch(filterByType(e.target.value))
     }
   
-    const handleSortByABC = (e) => {
-      e.preventDefault()
-      dispatch(orderByName(e.target.value))
-      setCurrentPAge(1)
-      setOrden(`Ordenado ${e.target.value}`)
-    }
+    
   
     function handleReset(e){
       e.preventDefault()
@@ -92,9 +80,7 @@ export default function Home() {
           allTypes={allTypes}
           handleReset={handleReset}
           handleOrigin={handleOrigin}
-          handleSortBySTR={handleSortBySTR}
           handleFilterType={handleFilterType}
-          handleSortByABC={handleSortByABC}
           handleSortPokemons={handleSortPokemons}/>
         </StyledHome>
       </>

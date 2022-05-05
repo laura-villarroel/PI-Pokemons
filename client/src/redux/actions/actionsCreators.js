@@ -9,9 +9,7 @@ import {
     //DELETE_POKEMON,
     FILTER_BY_TYPE,
     FILTER_BY_ORIGIN,
-    ORDER_BY_NAME,
-    ORDER_BY_ATTACK,
-    SORT_POKEMONS //! esto sustituiria los dos ordenamientos
+    SORT_POKEMONS 
 } from "./actionType.js";
 
 
@@ -59,10 +57,6 @@ export const getDetailPokemon = (id) => {
         .then(response =>
           dispatch({ type: GET_DETAIL_POKEMON, payload: response.data }))
           .catch((error) => console.log(error))
-            /* return dispatch({
-                type: GET_DETAIL_POKEMON, payload: {}
-            }) */
-      ; 
 
     }
 }
@@ -92,23 +86,10 @@ export const filterByOrigin = (payload) => {
     }
 }
 
-export const sortPokemons = (payload) => { //! esto sustituiria los dos ordenamientos
+export const sortPokemons = (payload) => { 
     return {
         type: SORT_POKEMONS,
         payload
     }
 }
 
-
-export const orderByName = (payload) => {
-    return {
-        type: ORDER_BY_NAME,
-        payload
-    }
-}
-export const orderByAttack = (payload) => {
-    return {
-        type: ORDER_BY_ATTACK,
-        payload
-    }
-}

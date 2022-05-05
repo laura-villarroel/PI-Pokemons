@@ -16,7 +16,7 @@ export default function Card(props) {
           ) : (
             <StyledCard>
               <div className='name'>
-              <StyledLink to={`/pokemon/${id}`}>
+              <StyledLink to={`/pokemon/detail/${id}`}>
                 <h1>{name.charAt(0).toUpperCase() + name.slice(1)}</h1>
               </StyledLink>
               </div>
