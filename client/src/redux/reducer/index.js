@@ -39,7 +39,7 @@ const initialState = {
         case GET_POKEMON:
             return {
                 ...state,
-                pokemons: action.payload,
+                pokemons: [action.payload],
               };
 
         case GET_DETAIL_POKEMON:

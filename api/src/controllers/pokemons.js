@@ -13,7 +13,7 @@ const { Op } = require("sequelize");
       let pokemonItem= {
         name:api.name,
         id: api.id,
-        img:api.sprites.other.home.front_default,
+        img:api.sprites.other.dream_world.front_default,
         attack:api.stats[1].base_stat,
         typePrimary: api.types[0].type.name,
         typeSecondary: api.types[1]?.type.name, 
@@ -47,7 +47,7 @@ return PokemonsDB;
         let PokemonApi ={ 
             id:api.id,
             name:api.name,
-            img:api.sprites.other.home.front_default,
+            img:api.sprites.other.dream_world.front_default,
             height:api.height,
             weight:api.weight,
             typePrimary: api.types[0].type.name,

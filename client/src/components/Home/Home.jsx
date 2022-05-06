@@ -63,11 +63,12 @@ export default function Home() {
       // let sortABC = document.getElementById('sortABC')
       // sortABC.selectedIndex =0
     }
-  
+  //!mejorar los avisos
     return (
       <>
         <NavBar />
         <StyledHome>
+        
           <Cards 
           pokemonsXpage={pokemonsXpage}
           allPokemons={allPokemons}
@@ -76,6 +77,13 @@ export default function Home() {
           currentPage={currentPage}
           setCurrentPAge={setCurrentPAge}
           />
+         {/*  :(
+            <div className="loading">
+              <h1>Loading...</h1>
+            </div>
+          ) */}
+          
+
           <Filters
           allTypes={allTypes}
           handleReset={handleReset}

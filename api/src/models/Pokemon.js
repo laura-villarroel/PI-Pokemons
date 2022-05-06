@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
 
     img:{
       type: DataTypes.STRING,
-      defaultValue:'https://static.hitek.fr/img/actualite/ill_m/1774761325/ohmassacretitre2.jp'
+      defaultValue:'https://static.hitek.fr/img/actualite/ill_m/1774761325/ohmassacretitre2.jpg'
     },
 
     hp:{
