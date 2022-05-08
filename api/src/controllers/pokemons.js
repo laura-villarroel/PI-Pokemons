@@ -71,7 +71,7 @@ return PokemonsDB;
       name:pokemonById.name,
       img:pokemonById.img,
       hp:pokemonById.hp,
-      atrack:pokemonById.atrack,
+      attack:pokemonById.attack,
       defense:pokemonById.defense,
       specialAttack:pokemonById.specialAttack,
       specialDefense:pokemonById.specialDefense,
@@ -127,7 +127,7 @@ module.exports = {
                 name:pokemonDB.name,
                 img:pokemonDB.img,
                 hp:pokemonDB.hp,
-                atrack:pokemonDB.atrack,
+                attack:pokemonDB.attack,
                 defense:pokemonDB.defense,
                 specialAttack:pokemonDB.specialAttack,
                 specialDefense:pokemonDB.specialDefense,
@@ -195,8 +195,9 @@ module.exports = {
               const NewPokemon = await Pokemon.create(character);//* se crea el pokemon en el DB
               await NewPokemon.addTypes(Types); //* se relaciona el pokemon creados con la tabla de tipos de pokemon
                          
-              return NewPokemon; //! no deberia de retornar nada
-
+              //return NewPokemon; //! no deberia de retornar nada
+              return Model.getPokemonByIdDB(NewPokemon.id)
+              //return {typePrimary:typePrimary,typeSecondary:typeSecondary}
       
     }
 }

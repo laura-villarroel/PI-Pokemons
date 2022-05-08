@@ -9,6 +9,7 @@ export default function AllCards({pokemonsXpage, allPokemons, paginado, currentP
   
 
     return (
+    
       <div className="box">
         <Paginated
           pokemonsXpage={pokemonsXpage}
@@ -18,7 +19,8 @@ export default function AllCards({pokemonsXpage, allPokemons, paginado, currentP
           setCurrentPAge={setCurrentPAge}
         />
         <StyledCards>
-          {currentPokemons?.map((el) => {
+          { allPokemons[0]
+          ?( currentPokemons?.map((el) => {
             return (
               el.msg ? <Card key={1} msg={el.msg}/> :
               <Card 
@@ -28,12 +30,15 @@ export default function AllCards({pokemonsXpage, allPokemons, paginado, currentP
                 img={el.img} 
                 typePrimary={el.typePrimary} 
                 typeSecondary={el.typeSecondary} 
-                //type={[el.typePrimary,el.typeSecondary]}
-                //type={el.type ? el.type : el.types.map(el => el.name)}
                 attack={el.attack}
               />
             );
-          })}
+          }))
+          :( <div className="loading">
+          <p>Loading...</p>
+        </div>
+          )
+          }
         </StyledCards>
       </div>
     );

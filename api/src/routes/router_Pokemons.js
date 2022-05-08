@@ -39,8 +39,9 @@ router.get('/', async (req, res) => {
    router.post('/', async (req, res) => {
        
      try {
-        await createPokemon(req.body)
-       res.status(201).json({msg:'successfully created pokemon'});
+       let NewPokemon= await createPokemon(req.body)
+       //res.status(201).json({msg:'successfully created pokemon'});
+       res.status(201).json(NewPokemon);
 
      } catch (error) {
        res.status(404).json({error:error.message});

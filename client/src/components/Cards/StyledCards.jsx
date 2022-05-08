@@ -7,6 +7,10 @@ const StyledCards = styled.div`
     grid-template-columns: auto auto auto auto;
     //border: 1px solid black;
     justify-content: center;
+
+    .loading {
+    }
+  
 `
 
 export default StyledCards

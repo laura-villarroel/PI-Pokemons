@@ -46,9 +46,10 @@ export const getPokemon = (name) => {
           dispatch({ type: GET_POKEMON, payload: response.data }))
           .catch((error) => {console.log(error)
             return dispatch({
-                type: GET_POKEMON, payload: [{msg: `${name} doesn't exists`}]
+                type: GET_POKEMON, payload: {msg: `${name} doesn't exists`}
             })
         });  
+
     }
 }
 export const getDetailPokemon = (id) => {  

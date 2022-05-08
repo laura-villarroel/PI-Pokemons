@@ -10,7 +10,6 @@ export default function Detail(props) {
 
   useEffect(() => {
     dispatch(getDetailPokemon(props.match.params.id));
-    //return () => dispatch(getDetail("a"));
     return () => dispatch(cleanDetailPokemon());
   }, []);
 

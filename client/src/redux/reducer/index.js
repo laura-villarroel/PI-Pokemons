@@ -33,7 +33,7 @@ const initialState = {
         case CREATE_POKEMON:
             return {
                 ...state,
-                pokemons:[...state.pokemons,action.payload]
+                /* pokemons:[...state.pokemons,action.payload] */
               };
         
         case GET_POKEMON:
@@ -62,7 +62,7 @@ const initialState = {
                 elem.typePrimary=== action.payload || elem.typeSecondary===action.payload)
             return {
                 ...state,
-                pokemons:filterPokemonType
+                pokemons:filterPokemonType[0]?filterPokemonType:[{msg: ` there is no such type of pokemon in the database, create a pokemon with that type`}]
              
                 }
         
