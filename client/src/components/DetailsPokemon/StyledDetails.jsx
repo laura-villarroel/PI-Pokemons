@@ -46,7 +46,7 @@ const StyledDetails = styled.div`
   .data {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: 100vh;
+    grid-template-rows: 90vh;
     justify-content: space-between;
     align-items: center;
 
@@ -61,14 +61,14 @@ const StyledDetails = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      margin-left: 30px;
+      margin-left: 50px;
       text-align: left;
       height: 650px;
       h1 {
         color: white;
         font-size: 100px;
         margin-bottom: 0px;
-        margin-top: 30px;
+        margin-top: 0px;
       }
       button {
         background: rgba(44, 44, 44, 0.473);
@@ -91,18 +91,20 @@ const StyledDetails = styled.div`
         margin-left: 50px;
 
         h3 {
-          font-size: 20px;
+          font-size: 30px;
           margin: 0px;
+          color:white;
         }
 
         h4 {
           font-size: 30px;
         }
         h5 {
-          font-size: 15px;
+          font-size: 16px;
         }
         p {
-          font-size: 15px;
+          font-size: 25px;
+          font-weight: bold;
         }
 
         .types {

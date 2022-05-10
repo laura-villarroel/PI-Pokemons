@@ -2,7 +2,7 @@ import React from "react";
 import { StyledFilter } from "./StyledFilters.jsx";
 import { Link } from "react-router-dom";
 
-//! OK
+
 export default function Filters({allTypes, handleReset, handleOrigin, handleFilterType,handleSortPokemons}) {
 
 

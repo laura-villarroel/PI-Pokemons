@@ -118,9 +118,6 @@ module.exports = {
         try {
             const nameLower=name.toLowerCase(); //* convierte el nombre en minuscula 
            
-            const pokemonApi= await Model.getPokemonApi(nameLower); //* si existe el pokemon en la Api retorna sus propiedades
-            if(pokemonApi) {return pokemonApi} 
-
             const pokemonDB=await Pokemon.findOne({
                 where: { name:nameLower}, include: Type
                 });
@@ -144,6 +141,9 @@ module.exports = {
               
               return  PokemonsDBname; 
             }
+
+            const pokemonApi= await Model.getPokemonApi(nameLower); //* si existe el pokemon en la Api retorna sus propiedades
+            if(pokemonApi) {return pokemonApi} 
         
             
             } 

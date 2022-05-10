@@ -17,7 +17,7 @@ export default function Home() {
     const [currentPage, setCurrentPAge] = useState(1);
     const [pokemonsXpage] = useState(12);
    const [orden, setOrden] = useState('') 
-    //console.log(orden)
+   
   
     let indexLastPokemon = currentPage * pokemonsXpage; //12
     let indexFirstPokemon = indexLastPokemon - pokemonsXpage; //0
@@ -59,11 +59,9 @@ export default function Home() {
     function handleReset(e){
       e.preventDefault()
       window.location.reload()
-      // dispatch(getAllPokemons())
-      // let sortABC = document.getElementById('sortABC')
-      // sortABC.selectedIndex =0
+    
     }
-  //!mejorar los avisos
+ 
     return (
       <>
         <NavBar />
@@ -77,12 +75,6 @@ export default function Home() {
           currentPage={currentPage}
           setCurrentPAge={setCurrentPAge}
           />
-         {/*  :(
-            <div className="loading">
-              <h1>Loading...</h1>
-            </div>
-          ) */}
-          
 
           <Filters
           allTypes={allTypes}
