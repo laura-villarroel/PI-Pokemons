@@ -27,9 +27,21 @@ export default function Detail(props) {
                 <button>Back to Home</button>
               </Link>
             </div>
+            <div>
+              <h1>
+                {pokeDetail.name.charAt(0).toUpperCase() +
+                  pokeDetail.name.slice(1)}
+              </h1>
+            </div>
 
             <div className="data3">
               <h4>ID: {pokeDetail.id}</h4>
+              <h5>HP: {pokeDetail.hp}</h5>
+              <h5>ATTACK: {pokeDetail.attack}</h5>
+              <h5>DEFENSE: {pokeDetail.defense}</h5>
+              <h5>SPEED: {pokeDetail.speed}</h5>
+              <h5>HEIGHT: {pokeDetail.height} dm (1 m=10 dm)</h5>
+              <h5>WEIGHT: {Math.round(pokeDetail.weight)} hgr (1 kg=10 hgr)</h5>
               <h3>TYPES: </h3>
               <div className="types">
                 {types.map((type) => {
@@ -43,23 +55,20 @@ export default function Detail(props) {
                       );
                     })}
               </div>
-              <h5>HP: {pokeDetail.hp}</h5>
-              <h5>ATTACK: {pokeDetail.attack}</h5>
-              <h5>DEFENSE: {pokeDetail.defense}</h5>
-              <h5>SPEED: {pokeDetail.speed}</h5>
-              <h5>HEIGHT: {pokeDetail.height} dm (1 m=10 dm)</h5>
-              <h5>WEIGHT: {Math.round(pokeDetail.weight)} hgr (1 kg=10 hgr)</h5>
             </div>
-            <div>
-              <h1>
-                {pokeDetail.name.charAt(0).toUpperCase() +
-                  pokeDetail.name.slice(1)}
-              </h1>
-            </div>
+            
           </div>
-
+          
+          <div className="pokebola">
+              <img src='https://www.pngall.com/wp-content/uploads/4/Pokemon-Pokeball-Transparent.png' alt="" />
+              </div>
+              <div className="pokemon">
           <img src={pokeDetail.img} alt="" />
+          </div>
+          <div className="linea"></div>
+          <div className="circulo"></div>
         </div>
+        
       ) : (
         <div className="loading">
           <p>Loading...</p>

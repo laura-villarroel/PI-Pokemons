@@ -4,14 +4,45 @@ import AllColors from "../../colorsPalette/colors.js";
 const StyledDetails = styled.div`
   height: 100vh;
   background: linear-gradient(
-    45deg,
+    90deg,
     rgba(239, 62, 51, 1) 48%,
     rgba(255, 255, 255, 1) 48%
   );
+  .circulo{
+        width: 100px;
+        height: 100px;
+        background-color: white;
+        border-radius: 60%;
+        border-style: solid;
+        border-width: 1rem;
+        position: absolute;
+        top: 320px;
+        margin-left:700px;
+    }
 
+  .linea{
+        width: 2px;
+        height: 756px;
+        background-color: #010000;
+        /* border-radius: 60%; */
+        border-style: solid;
+        border-width: 1rem;
+        position: absolute;
+        margin-left:750px;
+        top: 0px;
+    }
+.pokemon{
+  position:absolute;
+  top:120px;
+  margin-left:1000px;
+}
   .loading {
   }
-
+  .pokebola{
+    position:absolute;
+        top:250px;
+       margin-left:980px;
+  }
   .data {
     display: grid;
     grid-template-columns: auto auto;
@@ -22,6 +53,8 @@ const StyledDetails = styled.div`
     img {
       width: 550px;
       margin-right: 40px;
+     
+     
     }
 
     .data2 {
@@ -47,8 +80,8 @@ const StyledDetails = styled.div`
         border-radius: 5px;
         cursor: pointer;
         font-size: 15px;
-        margin-bottom: 30px;
-
+        margin-bottom: 0px;
+       
         &:hover {
           border: 2px solid white;
           color: white;
@@ -63,7 +96,13 @@ const StyledDetails = styled.div`
         }
 
         h4 {
-          font-size: 20px;
+          font-size: 30px;
+        }
+        h5 {
+          font-size: 15px;
+        }
+        p {
+          font-size: 15px;
         }
 
         .types {
@@ -72,7 +111,7 @@ const StyledDetails = styled.div`
           justify-content: start;
 
           img {
-            width: 25px;
+            width: 50px;
           }
         }
       }
