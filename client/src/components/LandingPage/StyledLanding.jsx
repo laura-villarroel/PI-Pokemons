@@ -1,6 +1,6 @@
 import styled from "styled-components";
 //import img from "../../img/pokemon-pikachu-wallpaper-1651733006.jpg";
-import img from "../../image/pokemonAll.jpg";//! buscar 
+/* import img from "../../image/pokemonAll.jpg";//! buscar  */
 import allColors from "../../colorsPalette/colors.js"; //! buscar
 
 const StyledDiv = styled.div`

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // nos importamos las actions que vamos a utilizas
-import { getAllTypes, createPokemon } from "../../redux/actions/actionsCreators.js";
+import { getAllTypes, createPokemon,getPokemon,getAllPokemons } from "../../redux/actions/actionsCreators.js";
 // nos importamos Link de react-router-dom
 import {Link} from "react-router-dom";
 // nos importamos el estilo
@@ -10,18 +10,21 @@ import StyledCrate, { StyledRange } from "./StyledCreate.jsx";
 //nos importamos los componentes que vamos a utilizar
 import StyledNav from "../NavBar/StyledNav.jsx";
 //nos importamos la funcion de validacion del formulario
-import { validate } from "./validate";
+/* import { validate } from "./validate"; */
 
 export default function CreatePokemon() {
   // nos traemos el estado de los tipos y todos los pokemons del reduce, con useselect
   const allTypes = useSelector((state) => state.types);
-  const pokemonsAll = useSelector((state) => state.pokemonsAll);
+  const pokemonsAll = useSelector((state) => state.pokemonsAll).map(e=>e.name);
   // creamos una nueva instancia de la ejecucion de  usedispatch
   const dispatch = useDispatch();
-  //! revisar si es necesario volver a despachar la accion de getAllTypes()
   useEffect(() => {
     dispatch(getAllTypes());
+    dispatch(getAllPokemons());
   }, [dispatch]);
+
+ 
+
 // Creamos un estado local del input del form useState de react
 const [input, setInput] = useState({
   name: "",
@@ -41,27 +44,76 @@ const [errors, setErrors] = useState({});
 // creamos un estado local de mensajes
 const [msg, setMsg] = useState("");
 
+// funcion de validacion
+const validate = (input) =>{
+  let errors = {};
+
+  if(pokemonsAll.includes(input.name.toLowerCase())) {
+    errors.name = "The pokemon already exists, use another name";
+  }
+
+if (!input.name) {
+  errors.name = "A name is required";
+} else if (!/^[a-zA-Z]+$/.test(input.name) || input.name.length > 10 ) {
+  errors.name = "Name is invalid";
+}
+
+if (!input.height) {
+  errors.height = "Height is required";
+} else if (input.height > 200) {
+  errors.height = "Height is invalid";
+}
+
+if (!input.weight) {
+  errors.weight = "Weight is required";
+} else if (input.weight > 10000) {
+  errors.weight = "Weight is invalid";
+}
+
+if (!input.img) {
+  errors.img = "an img url is required";
+} else if (!/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/.test(input.img)
+) {errors.img = "url is invalid";}
+
+return errors;
+}
+
 // creamos las funciones que escuchan los cambios y actualizan los estados
 const handleInputChange = (e) => {
   setMsg("");
-    if (e.target.name === "name" || e.target.name === "img" || e.target.name === "typePrimary"|| e.target.name === "typeSecondary") {
+    if (e.target.name === "name" || e.target.name === "img" || e.target.name === "typePrimary"|| e.target.name === "typeSecondary")
+     {
       setInput({
         ...input,
         [e.target.name]: e.target.value,
       });
+
     } else {
+      
+
       setInput({
         ...input,
         [e.target.name]: Number(e.target.value),
       });
     }
-
+    
     setErrors(
       validate({
         ...input,
         [e.target.name]: e.target.value,
       })
     );
+
+  /*   if (e.target.name === "name"){
+      if( pokemonsAll.includes(e.target.value)) 
+    {setErrors( validate({...input,id:true}))}
+    } */
+    
+      
+      
+  
+    
+    
   };
 
   const handleOnSubmit= (e) => {
@@ -190,7 +242,7 @@ const handleInputChange = (e) => {
 
           <div className="tam2">
             <label>Height: </label>
-            <h6>*dm - max 200 dm (Decimetros)</h6>
+            <h6>*dm - max 200 dm (1 m=10 dm)</h6>
             <input
               name="height"
               type="text"
@@ -202,7 +254,7 @@ const handleInputChange = (e) => {
 
           <div className="tam2">
             <label>weight: </label>
-            <h6>*hgr - max 10000 hgr (Hectagramos)</h6>
+            <h6>*hgr - max 10000 hgr (1 kg=10 hgr)</h6>
             <input
               name="weight"
               type="text"

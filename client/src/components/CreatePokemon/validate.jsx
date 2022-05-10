@@ -1,9 +1,13 @@
 export const validate = (input) =>{
     let errors = {};
 
+    if(input.id){
+      errors.name = "A pokemon with that name exists, use another";
+    }
+
   if (!input.name) {
     errors.name = "A name is required";
-  } else if (!/^[a-zA-Z]+$/.test(input.name) || input.name.length > 10) {
+  } else if (!/^[a-zA-Z]+$/.test(input.name) || input.name.length > 10 ) {
     errors.name = "Name is invalid";
   }
 

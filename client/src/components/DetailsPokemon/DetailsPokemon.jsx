@@ -47,8 +47,8 @@ export default function Detail(props) {
               <h5>ATTACK: {pokeDetail.attack}</h5>
               <h5>DEFENSE: {pokeDetail.defense}</h5>
               <h5>SPEED: {pokeDetail.speed}</h5>
-              <h5>HEIGHT: {pokeDetail.height} dm</h5>
-              <h5>WEIGHT: {Math.round(pokeDetail.weight)} hgr</h5>
+              <h5>HEIGHT: {pokeDetail.height} dm (1 m=10 dm)</h5>
+              <h5>WEIGHT: {Math.round(pokeDetail.weight)} hgr (1 kg=10 hgr)</h5>
             </div>
             <div>
               <h1>
