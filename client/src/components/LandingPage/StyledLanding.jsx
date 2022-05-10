@@ -4,7 +4,7 @@ import img from "../../image/pokemonAll.jpg";//! buscar
 import allColors from "../../colorsPalette/colors.js"; //! buscar
 
 const StyledDiv = styled.div`
-  background-image: url(${img});
+  background-image: url(https://imagem.natelinha.uol.com.br/grande/Pokemon2007.jpg);
   background-size: cover;
   position: fixed;
   top: 0px;
@@ -24,8 +24,9 @@ const StyledDiv = styled.div`
   
 
     h1 {
-      color: white;
+      color: yellow;
       margin-bottom: 50px;
+      font-size: 40px;
     }
 
     img {

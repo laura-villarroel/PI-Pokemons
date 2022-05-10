@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import img from "../../image/createIMG.jpg";
 import allColors from "../../colorsPalette/colors";
 
 
 const StyledCrate = styled.div`
-  background-image: url(${img});
+  background-image: url(https://nintendo.pe/wp-content/uploads/2016/03/pokemon.jpg);
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -15,19 +14,19 @@ const StyledCrate = styled.div`
   form {
     position: relative;
     top: 20px;
-    left: 900px;
-    padding-top: 20px;
+    left: 20px;
+    padding-top: 5px;
     padding-bottom: 20px;
     border-radius: 10px;
     border: 2px solid black;
     background: linear-gradient(
       0deg,
-      rgba(239, 62, 51, 0.70) 67%,
+      rgba(13, 184, 156, 0.7) 67%,
       rgba(21, 43, 98, 0.70) 100%
     );
     width: 600px;
     height: 530px;
-    color: white;
+    color: #0a0808;
   }
   
 
@@ -37,14 +36,16 @@ const StyledCrate = styled.div`
     visibility: hidden;
   }
   .error {
-    color: white;
-    font-size: 11px;
+    color: #f70505;
+    font-size: 12px;
   }
   .inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 13px;
+    margin: 5px;
+    font-size: 18px;
+    font-weight: bold;
   
     .inputIMG {
       width: 400px;
@@ -62,7 +63,8 @@ const StyledCrate = styled.div`
     }
 
     h3{
-      margin-bottom: 5px;
+      margin-bottom: 0px;
+      
     }
     
   }
@@ -70,11 +72,15 @@ const StyledCrate = styled.div`
     display: grid;
     grid-template-columns: auto auto;
     margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
   }
   .tam {
     display: grid;
     grid-template-columns: auto auto;
     margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
 
     h6 {
       margin: 0;
@@ -82,22 +88,25 @@ const StyledCrate = styled.div`
     input {
       width: 50px;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 5px;
       border:none;
       border-bottom: 2px solid white;
       background: none;
       outline: none; 
       color: ${allColors.mainColor};
-      font-size: 15px;
+      font-size: 18px;
+      
     }
   }
   .types {
     display: grid;
-    grid-template-columns: 100px 100px;
+    grid-template-columns: 150px 150px;
     grid-template-rows: 40px;
-    margin: 20px;
+    margin: 0px;
     align-items: center;
     justify-content: space-around;
+    font-size: 18px;
+    font-weight: bold;
 
     .type2 {
       display: grid;
@@ -176,10 +185,9 @@ export const StyledRange = styled.input`
     -webkit-appearance: none;
     width: 23px;
     height: 23px;
-    //background-image: radial-gradient(circle, #f7f7fc 40%, black 45%);
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg);
     border-radius: 50%;
-    //box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.5);
+   
   }
 `;
 

@@ -8,15 +8,15 @@ export const validate = (input) =>{
   }
 
   if (!input.height) {
-    errors.height = "height is required";
+    errors.height = "Height is required";
   } else if (input.height > 200) {
-    errors.height = "height is invalid";
+    errors.height = "Height is invalid";
   }
 
   if (!input.weight) {
-    errors.weight = "weight is required";
-  } else if (input.weight > 2000) {
-    errors.weight = "weight is invalid";
+    errors.weight = "Weight is required";
+  } else if (input.weight > 10000) {
+    errors.weight = "Weight is invalid";
   }
 
   if (!input.img) {

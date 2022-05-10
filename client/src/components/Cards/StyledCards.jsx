@@ -9,6 +9,8 @@ const StyledCards = styled.div`
     justify-content: center;
 
     .loading {
+        font-size: 40px;
+        font-weight: bold;
     }
   
 `

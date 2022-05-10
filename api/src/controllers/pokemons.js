@@ -169,12 +169,13 @@ module.exports = {
               } = pokemon; // req.body
 
               if (!name) {throw new Error('Need to send the name of the pokemon!')}; //*crea un error si no existe el name del pokemon
-                
+        
               //* buscamos en el DB si existe un pokemon con ese nombre
               const pokemonDB=await Pokemon.findOne({ where: {name:name.toLowerCase()}});
 
-                if(pokemonDB) //* Crea un error si existe  un pokemon con ese nombre en el DB
-                 { throw new Error('There is already a pokemon with that name, please choose another name!')};
+                  if(pokemonDB ) //* Crea un error si existe  un pokemon con ese nombre en el DB
+                 { throw new Error('There is already a pokemon with that name, please choose another name!')};  
+                
             
               const Types = await Type.findAll({ attributes: ['id'], where: { name:{[Op.in]: [typePrimary, typeSecondary]} }
               }); //* busca solo los id que corresponden a los tipo de pokemon que se esta creando en la tabla de Type.

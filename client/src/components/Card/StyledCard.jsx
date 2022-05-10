@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import allColors from '../../colorsPalette/colors.js'
 
 const StyledCard = styled.div`
   border-style: solid;
@@ -14,13 +15,14 @@ const StyledCard = styled.div`
   align-items: center;
   border-radius: 10px;
   background: linear-gradient(
-    0deg,
+    15deg,
     rgba(255, 255, 255, 1) 60%,
-    rgba(239, 62, 51, 1) 60%
+    #da301e 60%
   );
 
   h4{
   margin-bottom: 0px;
+  font-size: 20px;
   }
 
   .divIMG {
@@ -49,7 +51,7 @@ const StyledCard = styled.div`
     justify-content: space-evenly;
 
     h3 {
-      font-size: 15px;
+      font-size: 18px;
     }
 
     div {
@@ -64,14 +66,15 @@ const StyledCard = styled.div`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: white;
-
+  &:hover{
+    color: ${allColors.mainColor};};
   &:focus,
-  &:hover,
   &:visited,
   &:link,
   &:active {
     text-decoration: none;
-  }
+  };
+ 
 `;
 
 export const StyleNotFound = styled.div`

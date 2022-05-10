@@ -16,19 +16,22 @@ export default function SearchBar(){
 
     function handleSubmit(e){
         e.preventDefault()
+        if (name){
         dispatch(getPokemon(name))
-        setName('')
+        setName('')}
     }
 
     return(
         <StyledForm onSubmit={(e) => handleSubmit(e)}>
             <input 
             type="text"
-            placeholder='Ej: Pikachu' 
+            placeholder='Search pokemon...' 
             value={name}
             onChange={(e)=>{handleImputChange(e)}}
             />
-             <button type='submit'>search</button>
+            {<button className='submit' type='submit'>search</button>}
+           
+            
         </StyledForm>
     )
 }

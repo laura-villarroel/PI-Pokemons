@@ -4,7 +4,9 @@ import AllColors from '../../colorsPalette/colors.js'
 const StyledForm = styled.form`
     display: flex;
     flex-direction: row;
-    align-items: center;
+     align-items: center; 
+    position: absolute;
+    margin-left:1150px;
 
 
     input {
@@ -17,7 +19,7 @@ const StyledForm = styled.form`
     font-size: 20px;
 }
 
-button{
+.submit{
     background: rgba(44, 44, 44, 0.473);
     border: 2px solid ${AllColors.mainColor};
     color: ${AllColors.mainColor};
@@ -27,7 +29,9 @@ button{
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
-
+    position: absolute;
+    margin-left:220px;
+    top: 4px;
     &:hover{
         border: 2px solid white;
         color: white;

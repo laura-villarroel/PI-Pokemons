@@ -1,4 +1,5 @@
 const { DataTypes,UUIDV4 } = require('sequelize');
+
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -16,7 +17,7 @@ module.exports = (sequelize) => {
 
     img:{
       type: DataTypes.STRING,
-      defaultValue:'https://static.hitek.fr/img/actualite/ill_m/1774761325/ohmassacretitre2.jpg'
+      defaultValue:'https://www.glasgowtimes.co.uk/resources/images/5283517.jpg?type=responsive-gallery-fullscreen'
     },
 
     hp:{

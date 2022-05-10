@@ -6,10 +6,10 @@ export const StyledFilter = styled.div`
     max-height: 450px;
     margin-top: 80px;
     margin-right: 5px;
-    background-color: ${allColors.colors[0]};
+    background-color: ${allColors.colors[4]};
     padding: 30px;
     border-radius: 10px;
-    color: white;
+    color: ${allColors.colors[5]};
     font-size: 25px;
     position: sticky;
     top:70px;
@@ -18,7 +18,7 @@ export const StyledFilter = styled.div`
         display: flex;
         flex-direction: column;
         color: ${allColors.colors[2]};
-        font-size: 13px;
+        font-size: 15px;
         
         select {
             margin-bottom: 10px;
@@ -35,7 +35,7 @@ export const StyledFilter = styled.div`
         color: white;
         text-decoration: none;
         cursor: pointer;
-        font-size: 15px;
+        font-size: 22px;
         font-weight: bold;
         text-align: center;
         &:hover{
@@ -51,7 +51,7 @@ export const StyledFilter = styled.div`
     width: 80px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
     margin: 10px;
 
     &:hover{

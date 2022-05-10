@@ -13,8 +13,9 @@ import StyledNav from "../NavBar/StyledNav.jsx";
 import { validate } from "./validate";
 
 export default function CreatePokemon() {
-  // nos traemos el estado de los tipos de pokemons del reduce, con useselect
+  // nos traemos el estado de los tipos y todos los pokemons del reduce, con useselect
   const allTypes = useSelector((state) => state.types);
+  const pokemonsAll = useSelector((state) => state.pokemonsAll);
   // creamos una nueva instancia de la ejecucion de  usedispatch
   const dispatch = useDispatch();
   //! revisar si es necesario volver a despachar la accion de getAllTypes()
@@ -24,10 +25,10 @@ export default function CreatePokemon() {
 // Creamos un estado local del input del form useState de react
 const [input, setInput] = useState({
   name: "",
-  hp: 0,
-  attack: 20,
-  defense: 20,
-  speed: 20,
+  hp: 1,
+  attack: 5,
+  defense: 5,
+  speed: 5,
   height: 0,
   weight: 0,
   img: "",
@@ -65,21 +66,22 @@ const handleInputChange = (e) => {
 
   const handleOnSubmit= (e) => {
     e.preventDefault();
-    dispatch(createPokemon(input));
+    if (Object.keys(errors).length===0 && input.name)
+    {dispatch(createPokemon(input));
     setMsg("Pokemon has been created");
     setInput({
       name: "",
-      hp: 0,
-      attack: 20, //! revisar por que no sale el attack en el detalle y revisar el redux como sale hacer pruebas
-      defense: 20,
-      speed: 20,
+      hp: 1,
+      attack: 5, 
+      defense: 5,
+      speed: 5,
       height: 0,
       weight: 0,
       img: "",
       type: [],
       typePrimary: "normal",
       typeSecondary: null,
-    });
+    });}
   };
   
 
@@ -92,8 +94,19 @@ const handleInputChange = (e) => {
             alt="Pokemon"
           />
         </Link>
-         <div className="circulo" /> 
+         <div className="circulo" > 
+         <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/640px-Pok%C3%A9_Ball_icon.svg.png"
+        alt="Pokemon"
+      />
+      </div>
+      <div>
+       <Link to="/home">
+       <button>Back to Home</button>
+       </Link>
+       </div>
       </StyledNav>
+     
       <form onSubmit={handleOnSubmit}>
         <h2>CREATE YOUR POKEMON</h2>
         <div className="inputs">
@@ -111,15 +124,15 @@ const handleInputChange = (e) => {
         <div className="barrasContainer">
           
           <div>
-            <label>Life: </label>
+            <label>HP: </label>
             <label>
               <StyledRange
                 className="barra"
                  name="hp"
                 type="range"
                 value={input.hp}
-                min={0}
-                max={100}
+                min={1}
+                max={255}
                 onChange={(e) => handleInputChange(e)}
               />
               {input.hp}
@@ -127,14 +140,14 @@ const handleInputChange = (e) => {
           </div>
 
           <div>
-            <label>Strength: </label>
+            <label>Attack: </label>
             <label>
               <StyledRange
                name="attack"
                 type="range"
                 value={input.attack}
-                min={20}
-                max={200}
+                min={5}
+                max={210}
                 onChange={(e) => handleInputChange(e)}
               />
               {input.attack}
@@ -148,8 +161,8 @@ const handleInputChange = (e) => {
                name="defense"             
                 type="range"
                 value={input.defense}
-                min={20}
-                max={150}
+                min={5}
+                max={230}
                 onChange={(e) => handleInputChange(e)}
               />
               {input.defense}
@@ -163,8 +176,8 @@ const handleInputChange = (e) => {
                 name="speed"
                 type="range"
                 value={input.speed}
-                min={20}
-                max={150}
+                min={5}
+                max={200}
                 onChange={(e) => handleInputChange(e)}
               />
               {input.speed}
@@ -177,7 +190,7 @@ const handleInputChange = (e) => {
 
           <div className="tam2">
             <label>Height: </label>
-            <h6>*cm - max 200cm</h6>
+            <h6>*dm - max 200 dm (Decimetros)</h6>
             <input
               name="height"
               type="text"
@@ -189,7 +202,7 @@ const handleInputChange = (e) => {
 
           <div className="tam2">
             <label>weight: </label>
-            <h6>*kg - max 2000kg</h6>
+            <h6>*hgr - max 10000 hgr (Hectagramos)</h6>
             <input
               name="weight"
               type="text"

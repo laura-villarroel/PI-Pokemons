@@ -11,7 +11,7 @@ export default function Card(props) {
           {props.msg ? (
             <StyleNotFound>
               <h1>{props.msg}</h1>
-              <img src="https://i.pinimg.com/originals/3a/da/78/3ada7822f8739e49ae928b824cf45392.gif" alt="" />
+              <img src="https://c.tenor.com/aZuxB-dfJlAAAAAC/pokemon-pocket-monsters.gif" alt="" />
             </StyleNotFound>
           ) : (
             <StyledCard>

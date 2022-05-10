@@ -16,7 +16,7 @@ export default function Home() {
   
     const [currentPage, setCurrentPAge] = useState(1);
     const [pokemonsXpage] = useState(12);
-    const [orden, setOrden] = useState('')
+   const [orden, setOrden] = useState('') 
     //console.log(orden)
   
     let indexLastPokemon = currentPage * pokemonsXpage; //12
@@ -46,7 +46,7 @@ export default function Home() {
       e.preventDefault()
       dispatch(sortPokemons(e.target.value))
       setCurrentPAge(1)
-      setOrden(`Ordenado ${e.target.value}`)
+       setOrden(`Ordenado ${e.target.value}`) 
     }
 
 

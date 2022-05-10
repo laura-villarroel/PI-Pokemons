@@ -11,10 +11,12 @@ import {
 } from "../actions/actionType.js";
 
 const initialState = {
-    pokemons: [],
+    pokemons: [], 
     pokemonsAll: [],
-    types: [],
+    types: [], 
     pokemonDetails: {},
+    filtrados1:[],
+  
   };
 
   const reducer = (state = initialState, action) => {
@@ -54,17 +56,7 @@ const initialState = {
                 pokemonDetails: action.payload
               }
         
-        case FILTER_BY_TYPE:
-            const allPokemons= state.pokemonsAll;
-            const filterPokemonType=action.payload === 'all'
-            ? allPokemons
-            :allPokemons.filter(elem=>
-                elem.typePrimary=== action.payload || elem.typeSecondary===action.payload)
-            return {
-                ...state,
-                pokemons:filterPokemonType[0]?filterPokemonType:[{msg: ` there is no such type of pokemon in the database, create a pokemon with that type`}]
-             
-                }
+      
         
         case FILTER_BY_ORIGIN:
             const allPokemons1= state.pokemonsAll;
@@ -76,8 +68,22 @@ const initialState = {
             :allPokemons1.filter(elem=> isNaN(elem.id)!==false)
             return {
                 ...state,
-                pokemons: filterPokemonOrigin,
+                pokemons: filterPokemonOrigin[0]?filterPokemonOrigin:[{msg: ` there is no pokemon created, please create a new pokemon`}],
+                filtrados1:filterPokemonOrigin
+
               };
+
+        case FILTER_BY_TYPE:
+           
+            const filtro1= state.filtrados1[0]?state.filtrados1:state.pokemonsAll;
+            const filterPokemonType=action.payload === 'all' && filtro1[0]
+            ? filtro1
+            :filtro1.filter(elem=>
+            elem.typePrimary=== action.payload || elem.typeSecondary===action.payload)
+            return {
+               ...state,
+               pokemons:filterPokemonType[0]?filterPokemonType:[{msg: ` there is no such type of pokemon in the database, create a pokemon with that type`}]
+               }
     
          case SORT_POKEMONS:
             const allPokemons2= state.pokemonsAll;

@@ -9,23 +9,23 @@ export default function Filters({allTypes, handleReset, handleOrigin, handleFilt
 
     return (
       <StyledFilter>
-        <h3>Filters</h3>
+        <h3>FILTERS</h3>
         <div className="filters">
-        <label>by origin</label>
+        <label>By origin</label>
           <select onChange={(e) => handleOrigin(e)}>
             <option value="all">All</option>
-            <option value="api">ApiPokemon</option>
-            <option value="database">Database</option>
+            <option value="api">Existent</option>
+            <option value="database">Created</option>
           </select>
           
-          <label>by type</label>
+          <label>By type</label>
           <select onChange={(e) => handleFilterType(e)}>
             <option value="all">All</option>
             {allTypes?.map((el) => {
               return <option key={el.id} value={el.name}>{el.name}</option>;
             })}
           </select>
-        <h2>Orden by</h2> 
+        <h2>ORDEN BY</h2> 
           <select onChange={(e) => handleSortPokemons(e)} id="OrdenBy">
             <option value="NONE" >None</option>
             <option value="ABC">By name from A to Z</option>
