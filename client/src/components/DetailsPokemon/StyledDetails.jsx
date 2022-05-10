@@ -33,7 +33,7 @@ const StyledDetails = styled.div`
     }
 .pokemon{
   position:absolute;
-  top:120px;
+  top:90px;
   margin-left:1000px;
 }
   .loading {
@@ -66,7 +66,7 @@ const StyledDetails = styled.div`
       height: 650px;
       h1 {
         color: white;
-        font-size: 100px;
+        font-size: 90px;
         margin-bottom: 0px;
         margin-top: 0px;
       }
