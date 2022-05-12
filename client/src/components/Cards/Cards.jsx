@@ -31,6 +31,7 @@ export default function AllCards({pokemonsXpage, allPokemons, paginado, currentP
                 typePrimary={el.typePrimary} 
                 typeSecondary={el.typeSecondary} 
                 attack={el.attack}
+                moves={el.moves}
               />
             );
           }))

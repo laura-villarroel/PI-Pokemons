@@ -16,14 +16,38 @@ const { Op } = require("sequelize");
         img:api.sprites.other.dream_world.front_default,
         attack:api.stats[1].base_stat,
         typePrimary: api.types[0].type.name,
-        typeSecondary: api.types[1]?.type.name, 
+        typeSecondary: api.types[1]?.type.name,
+        moves:api.moves[0].move.name 
         }
       
       apiData.push(pokemonItem);
     }
+       return [...apiData];
+      },
+      
+      //*promesas
+    /*   const apiData=[];
+    for (let i = 1; i < 41; i++) {
+      apiData.push( axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
+    }
+      Promise.all(apiData)
     
-    return [...apiData];
-},
+      .then(pokemon=>{
+     let pokemonArray=pokemon.map(api=> {
+       return{
+         name:api.data.name,
+        id: api.data.id,
+        img:api.data.sprites.other.dream_world.front_default,
+        attack:api.data.stats[1].base_stat,
+        typePrimary: api.data.types[0].type.name,
+        typeSecondary: api.data.types[1]?.type.name, 
+        }
+        
+      })
+      return  [...pokemonArray];
+        })    
+   
+},  */
 
   getPokemonsDB: async function() {
     // 1.2) función que busca todos los pokemones en la DB e incluye el tipo de pokemon y retorna un arreglo de pokemones.
@@ -43,7 +67,7 @@ return PokemonsDB;
 
   getPokemonApi: async function(param) {
     // 1.3) función que busca en la Api un pokemon por id o por nombre, y retorna sus propiedades. 
-        let api = (await (axios.get(`https://pokeapi.co/api/v2/pokemon/${param}`))).data;
+         let api = (await (axios.get(`https://pokeapi.co/api/v2/pokemon/${param}`))).data;
         let PokemonApi ={ 
             id:api.id,
             name:api.name,
@@ -59,7 +83,8 @@ return PokemonsDB;
             special_defense:api.stats[4].base_stat,
             speed:api.stats[5].base_stat,
         };
-       return PokemonApi;
+       return PokemonApi; 
+
 
 },
   getPokemonByIdDB: async function(id) {

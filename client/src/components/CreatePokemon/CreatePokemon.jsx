@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // nos importamos las actions que vamos a utilizas
-import { getAllTypes, createPokemon,getPokemon,getAllPokemons } from "../../redux/actions/actionsCreators.js";
+import { getAllTypes, createPokemon,getAllPokemons } from "../../redux/actions/actionsCreators.js";
 // nos importamos Link de react-router-dom
 import {Link} from "react-router-dom";
 // nos importamos el estilo
@@ -103,17 +103,6 @@ const handleInputChange = (e) => {
         [e.target.name]: e.target.value,
       })
     );
-
-  /*   if (e.target.name === "name"){
-      if( pokemonsAll.includes(e.target.value)) 
-    {setErrors( validate({...input,id:true}))}
-    } */
-    
-      
-      
-  
-    
-    
   };
 
   const handleOnSubmit= (e) => {

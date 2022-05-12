@@ -8,7 +8,13 @@ const StyledForm = styled.form`
     position: absolute;
     margin-left:1150px;
 
-
+    .mensaje{
+        font-size: 15px;
+        position: absolute;
+        top: 20px;
+        color:yellow;
+        margin-left:40px;
+    }
     input {
     margin: 5px;
     border-radius: 5px;
