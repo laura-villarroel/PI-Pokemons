@@ -51,7 +51,7 @@ export default function Home() {
 
     const handleFilterType = (e) => {
       dispatch(filterByType(e.target.value))
-      setCurrentPAge(1)
+       setCurrentPAge(1) 
     }
   
     
