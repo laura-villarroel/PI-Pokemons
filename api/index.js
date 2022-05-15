@@ -20,24 +20,24 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { Type } = require('./src/db.js');
-const { getPokemonTypes} = require("./src/controllers/types");
+const { getPokemonTypes } = require('./src/controllers/types');
 
 //* revisar por que aveces sale error //* ok
- let CreateDBTypes = async () =>{
+let CreateDBTypes = async () => {
   await Promise.all(
-    (await getPokemonTypes()).map(elem=>{
+    (
+      await getPokemonTypes()
+    ).map(elem => {
       Type.findOrCreate({ where: elem });
     })
-  )
-}
-
-
+  );
+};
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(process.env.PORT, () => {
     console.log('%s listening at 3001');
-    CreateDBTypes(); 
+    CreateDBTypes();
     // eslint-disable-line no-console
   });
 });
