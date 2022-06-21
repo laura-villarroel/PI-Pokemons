@@ -22,7 +22,7 @@
 
 ## Funcionamiento Final:
 
-[Link](/gif/pokemon-api-laura-villarroel.gif)
+![ejemplo](gif/pokemon-api-laura-villarroel.gif)
 
 ## Horarios y Fechas
 
