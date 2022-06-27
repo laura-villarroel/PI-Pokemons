@@ -10,7 +10,7 @@
 
 ## Deploy
 
-[Link](https://api-pokemon-laura-villarroel.vercel.app/)
+[Link](https://pokemons-api-chi.vercel.app/)
 
 ## Objetivos del Proyecto
 
